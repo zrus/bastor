@@ -13,6 +13,8 @@
 
 mod actor;
 mod error;
+mod r#override;
 
 pub use crate::actor::Actor;
 pub use crate::error::Error;
+pub use crate::r#override::Override;

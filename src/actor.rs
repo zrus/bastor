@@ -4,13 +4,9 @@ use std::time::Duration;
 
 use anyhow::Result;
 use async_trait::async_trait;
+use bastion::prelude::*;
 #[cfg(feature = "scaling")]
 use bastion::resizer::OptimalSizeExploringResizer;
-use bastion::{
-  prelude::{BastionContext, Dispatcher, Distributor},
-  supervisor::{RestartStrategy, SupervisionStrategy, SupervisorRef},
-  Bastion, Callbacks,
-};
 
 /// A `trait` to be implemented for state struct that attached to the Actor.
 ///
@@ -192,7 +188,7 @@ pub trait Actor: Clone + Sync + Send + 'static {
     Ok(())
   }
 
-  /// Run the actor with defined handler at `with_exec` with passing `supervisor`.
+  /// Run the actor with defined handler at [`Actor::with_exec`] with passing the [`supervisor`](bastion::supervisor::SupervisorRef) into.
   fn run_with_supervisor(&self, parent: SupervisorRef) -> Result<()> {
     let state = self.clone();
     parent
@@ -345,7 +341,7 @@ pub trait Actor: Clone + Sync + Send + 'static {
 
   /// Sets the number of elements this children group will
   /// contain. Each element will call the closure passed in
-  /// [`with_exec`] and run the returned future until it stops,
+  /// [`Actor::with_exec`] and run the returned future until it stops,
   /// panics or another element in the group stops or panics.
   ///
   /// The default number of elements a children group contains is `1`.

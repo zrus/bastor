@@ -1,17 +1,14 @@
 [package]
 name = "bastor"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 authors = ["Tuong Nguyen <tuongn09@gmail.com>"]
 description = "A wrapper helps implementing actor with Bastion more easier with self-implemented state"
 documentation = "https://docs.rs/bastor"
 readme = "README.md"
 repository = "https://github.com/zrus/bastor"
-keywords = ["actor", "bastion", "actor model"]
-
-[package.metadata.docs.rs]
-features = ["docs"]
-rustdoc-args = ["--cfg", "feature=\"docs\""]
+license = "MIT"
+keywords = ["actor", "bastion", "model"]
 
 [lib]
 doctest = true
@@ -36,3 +33,6 @@ serde = "1.0"
 
 [[example]]
 name = "my_inbox"
+
+[[example]]
+name = "override"

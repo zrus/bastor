@@ -152,15 +152,15 @@ impl Actor for MyInbox {
     }
   }
 
-  fn with_distributor() -> Option<Distributor> {
+  fn with_distributor(&self) -> Option<Distributor> {
     Some(Distributor::named("my_inbox"))
   }
 
-  fn with_children_callbacks() -> Option<Callbacks> {
+  fn with_children_callbacks(&self) -> Option<Callbacks> {
     Some(Callbacks::new().with_after_restart(|| println!("Restarted!")))
   }
 
-  fn with_redundancy() -> Option<usize> {
+  fn with_redundancy(&self) -> Option<usize> {
     Some(5)
   }
 }

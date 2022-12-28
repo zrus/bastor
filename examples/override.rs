@@ -154,11 +154,11 @@ impl Actor for MyInbox {
     }
   }
 
-  fn with_children_callbacks() -> Option<Callbacks> {
+  fn with_children_callbacks(&self) -> Option<Callbacks> {
     Some(Callbacks::new().with_after_restart(|| println!("Restarted!")))
   }
 
-  fn with_redundancy() -> Option<usize> {
+  fn with_redundancy(&self) -> Option<usize> {
     Some(5)
   }
 }

@@ -53,15 +53,15 @@ impl Override {
   /// with [`Bastion::supervisor`](bastion::supervisor::Supervisor).
   pub fn run<A: Actor>(self, inner: A) -> Result<()> {
     let supervisor = Bastion::supervisor(|mut sp| {
-      if let Some(callbacks) = A::with_supervisor_callbacks() {
+      if let Some(callbacks) = inner.with_supervisor_callbacks() {
         sp = sp.with_callbacks(callbacks);
       }
 
-      if let Some(strategy) = A::with_strategy() {
+      if let Some(strategy) = inner.with_strategy() {
         sp = sp.with_strategy(strategy);
       }
 
-      if let Some(restart_strategy) = A::with_restart_strategy() {
+      if let Some(restart_strategy) = inner.with_restart_strategy() {
         sp = sp.with_restart_strategy(restart_strategy);
       }
 
@@ -93,27 +93,27 @@ impl Override {
     let state = inner.clone();
     parent
       .children(move |mut c| {
-        if let Some(callbacks) = A::with_children_callbacks() {
+        if let Some(callbacks) = inner.with_children_callbacks() {
           c = c.with_callbacks(callbacks);
         }
 
-        if let Some(dispatcher) = A::with_dispatcher() {
+        if let Some(dispatcher) = inner.with_dispatcher() {
           c = c.with_dispatcher(dispatcher);
         }
 
-        if let Some(distributor) = A::with_distributor() {
+        if let Some(distributor) = inner.with_distributor() {
           c = c.with_distributor(distributor);
         }
 
-        if let Some(interval) = A::with_heartbeat_tick() {
+        if let Some(interval) = inner.with_heartbeat_tick() {
           c = c.with_heartbeat_tick(interval);
         }
 
-        if let Some(name) = A::with_name() {
+        if let Some(name) = inner.with_name() {
           c = c.with_name(name);
         }
 
-        if let Some(redundancy) = A::with_redundancy() {
+        if let Some(redundancy) = inner.with_redundancy() {
           c = c.with_redundancy(redundancy);
         }
 

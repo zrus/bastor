@@ -18,7 +18,7 @@ scaling = ["bastion/scaling"]
 
 [dependencies]
 # Core processes
-bastion = { version = "*", default-features = false, features = ["tokio-runtime"] }
+bastion = { version = "0.4", default-features = false, features = ["tokio-runtime"] }
 tokio = { version = "1.21", features = ["full"] }
 tokio-util = { version = "0.7", features = ["full"] }
 
